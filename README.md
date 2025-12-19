@@ -267,7 +267,6 @@ cd $HOME/rob6323_go2_project
 
 ## Training
 
-```bash
 cd $HOME/rob6323_go2_project
 ./train.sh
 
