@@ -58,6 +58,9 @@ _build
 **/logs/*
 **/recordings/*
 
+!**/logs/
+!**/logs/**/README.md
+
 # Pre-Trained Checkpoints
 /.pretrained_checkpoints/
 
