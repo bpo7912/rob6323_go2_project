@@ -189,7 +189,7 @@ No other files in the repository were changed.
 
 - Added torque clipping and a small torque magnitude penalty.
 
-**Rationale:**  
+**Results:**  
 Provides direct control over joint torques, enables energy regularization, and matches the reference tutorial and IsaacGymEnvs formulation.
 
 ---
@@ -200,7 +200,7 @@ Provides direct control over joint torques, enables energy regularization, and m
   - Action rate (first difference)
   - Action acceleration (second difference)
 
-**Rationale:**  
+**Results:**  
 Reduces high-frequency control jitter and results in smoother, more stable locomotion.
 
 ---
@@ -209,7 +209,7 @@ Reduces high-frequency control jitter and results in smoother, more stable locom
 - Implemented gait phase “clock inputs” (4 sinusoidal signals).
 - Added Raibert-style foot placement reward in the body frame based on commanded velocity.
 
-**Rationale:**  
+**Results:**  
 Encourages periodic trot-like gait with clean footfall timing and symmetry.
 
 ---
@@ -219,7 +219,7 @@ Encourages periodic trot-like gait with clean footfall timing and symmetry.
   - Target height: `0.08 * phase + 0.02`
   - Penalized clearance error only during swing phase.
 
-**Rationale:**  
+**Results:**  
 Prevents toe dragging and improves swing-leg kinematics.
 
 ---
@@ -228,7 +228,7 @@ Prevents toe dragging and improves swing-leg kinematics.
 - Added an Isaac Lab `ContactSensor` and registered it with the scene.
 - Implemented shaped contact-force penalty synchronized with desired contact states.
 
-**Rationale:**  
+**Results:**  
 Encourages appropriate stance contact timing and discourages undesired foot impacts.
 
 ---
@@ -244,7 +244,7 @@ Encourages appropriate stance contact timing and discourages undesired foot impa
   - Upside-down orientation
   - Base height below `0.05 m`
 
-**Rationale:**  
+**Results:**  
 Improves base stability, avoids body dragging, and removes unrecoverable failure states.
 
 ---
@@ -262,5 +262,15 @@ All experiments were run using the provided scripts without modification.
 ```bash
 cd $HOME/rob6323_go2_project
 ./install.sh
+
+---
+
+## Training
+
+```bash
+cd $HOME/rob6323_go2_project
+./train.sh
+
+
 
 
