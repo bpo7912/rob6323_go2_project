@@ -253,21 +253,14 @@ Improves base stability, avoids body dragging, and removes unrecoverable failure
 
 All experiments were run using the **provided scripts without modification**.
 
-### Installation (Greene HPC)
+All experiments were run using the provided scripts without modification.
+
+---
+
+## Installation (Greene HPC)
+
 ```bash
 cd $HOME/rob6323_go2_project
 ./install.sh
----
-### Training
-```bash
-cd $HOME/rob6323_go2_project
-./train.sh
-
-### Logs and Outputs
-
-Training logs, checkpoints, and rollout videos are stored under:
-
-logs/<job_id>/rsl_rl/go2_flat_direct/<date_time>/
-
 
 
