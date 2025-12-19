@@ -249,11 +249,6 @@ Improves base stability, avoids body dragging, and removes unrecoverable failure
 
 ---
 
-## Reproducibility Instructions
-
-All experiments were run using the **provided scripts without modification**.
----
-
 ## Installation (Greene HPC)
 
 ```bash
