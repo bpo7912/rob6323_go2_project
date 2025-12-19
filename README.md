@@ -257,7 +257,7 @@ All experiments were run using the **provided scripts without modification**.
 ```bash
 cd $HOME/rob6323_go2_project
 ./install.sh
-
+---
 ### Training
 ```bash
 cd $HOME/rob6323_go2_project
