@@ -164,4 +164,98 @@ The suggested way to inspect these logs is via the Open OnDemand web interface:
     - [ContactSensorData (`_contact_sensor.data`)](https://isaac-sim.github.io/IsaacLab/main/source/api/lab/isaaclab.sensors.html#isaaclab.sensors.ContactSensorData) — Contains `net_forces_w` (contact forces).
 
 ---
-Students should only edit README.md below this ligne.
+---
+
+## Project 2 – Implementation Summary (Student Section)
+
+This section documents the modifications made for **Project 2: Reinforcement Learning for Quadruped Locomotion**, following the official tutorial and course guidelines.
+
+### Files Modified
+As required, only the following two files were modified:
+
+- `source/rob6323_go2/rob6323_go2/tasks/direct/rob6323_go2/rob6323_go2_env.py`
+- `source/rob6323_go2/rob6323_go2/tasks/direct/rob6323_go2/rob6323_go2_env_cfg.py`
+
+No other files in the repository were changed.
+
+---
+
+## Summary of Major Additions and Rationale
+
+### 1. Explicit Torque-Level PD Control
+- Disabled Isaac Lab’s implicit joint PD by setting actuator stiffness and damping to zero.
+- Implemented explicit torque computation:
+  \[
+  \tau = K_p (q_{des} - q) - K_d \dot{q}
+  \]
+- Added torque clipping and a small torque magnitude penalty.
+
+**Rationale:**  
+Provides direct control over joint torques, enables energy regularization, and matches the reference tutorial and IsaacGymEnvs formulation.
+
+---
+
+### 2. Action Smoothness Regularization
+- Maintained a 3-step action history buffer.
+- Penalized:
+  - Action rate (first difference)
+  - Action acceleration (second difference)
+
+**Rationale:**  
+Reduces high-frequency control jitter and results in smoother, more stable locomotion.
+
+---
+
+### 3. Gait Phase Encoding and Raibert Heuristic
+- Implemented gait phase “clock inputs” (4 sinusoidal signals).
+- Added Raibert-style foot placement reward in the body frame based on commanded velocity.
+
+**Rationale:**  
+Encourages periodic trot-like gait with clean footfall timing and symmetry.
+
+---
+
+### 4. Foot Clearance Reward
+- Implemented swing-phase foot clearance shaping:
+  - Target height: `0.08 * phase + 0.02`
+  - Penalized clearance error only during swing phase.
+
+**Rationale:**  
+Prevents toe dragging and improves swing-leg kinematics.
+
+---
+
+### 5. Contact Force Shaping
+- Added an Isaac Lab `ContactSensor` and registered it with the scene.
+- Implemented shaped contact-force penalty synchronized with desired contact states.
+
+**Rationale:**  
+Encourages appropriate stance contact timing and discourages undesired foot impacts.
+
+---
+
+### 6. Stability and Regularization Terms
+- Penalized:
+  - Roll/pitch deviation (projected gravity XY)
+  - Vertical base velocity
+  - Base angular velocity in XY
+  - Joint velocity magnitudes
+- Added early termination conditions for:
+  - Base collision
+  - Upside-down orientation
+  - Base height below `0.05 m`
+
+**Rationale:**  
+Improves base stability, avoids body dragging, and removes unrecoverable failure states.
+
+---
+
+## Reproducibility Instructions
+
+All experiments were run using the **provided scripts without modification**.
+
+### Installation (Greene HPC)
+```bash
+cd $HOME/rob6323_go2_project
+./install.sh
+
