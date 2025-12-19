@@ -164,9 +164,8 @@ The suggested way to inspect these logs is via the Open OnDemand web interface:
     - [ContactSensorData (`_contact_sensor.data`)](https://isaac-sim.github.io/IsaacLab/main/source/api/lab/isaaclab.sensors.html#isaaclab.sensors.ContactSensorData) — Contains `net_forces_w` (contact forces).
 
 ---
----
 
-## Project 2 – Implementation Summary (Student Section)
+## Project 2 – Implementation Summary
 
 This section documents the modifications made for **Project 2: Reinforcement Learning for Quadruped Locomotion**, following the official tutorial and course guidelines.
 
