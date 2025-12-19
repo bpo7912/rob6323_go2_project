@@ -184,9 +184,8 @@ No other files in the repository were changed.
 ### 1. Explicit Torque-Level PD Control
 - Disabled Isaac Lab’s implicit joint PD by setting actuator stiffness and damping to zero.
 - Implemented explicit torque computation:
-  \[
-\tau = K_p (q_{\text{des}} - q) - K_d \dot{q}
-\]
+τ = Kp (q_des − q) − Kd q̇
+
 
 - Added torque clipping and a small torque magnitude penalty.
 
